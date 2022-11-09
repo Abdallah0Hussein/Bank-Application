@@ -1,9 +1,9 @@
-#include "BankApp.h"
-#include "BankApp.cpp"
-#include "BankAccount.cpp"
 #include "Client.cpp"
+#include "BankApplication.cpp"
+#include "BankAccount.cpp"
+
 
 int main()
 {
-  BankApp app;
+  BankApplication app;
 }

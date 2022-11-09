@@ -1,13 +1,16 @@
 #include "Client.h"
+#include <string>
+
+using namespace std;
 
 BankAccount& Client::getBankAccount()
 {
-  return *bankAccount;
+  return *bankAcc;
 }
 
-void Client::setBankAccount(BankAccount& account)
+void Client::setBankAccount(BankAccount* account)
 {
-  bankAccount = &account;
+  bankAcc = account;
 }
 
 void Client::setName(string name)
@@ -30,9 +33,9 @@ string Client::getAddress()
   return address;
 }
 
-void Client::setPhoneNumber(int Number)
+void Client::setPhoneNumber(int number)
 {
-  this->phoneNumber = Number;
+  this->phoneNumber = number;
 }
 
 int Client::getPhoneNumber()
@@ -42,6 +45,6 @@ int Client::getPhoneNumber()
 
 void Client::DisplayInfo()
 {
-  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber << "\nAccount ID: " << this->bankAccount->getID() << "(" << this->bankAccount->getAccType() << ")\nBalance: " << this->bankAccount->getBalance() << endl;
+  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber;// << "\nAccount ID: " << bankAcc->getID() << "(" << bankAcc->getAccType() << ")\nBalance: " << bankAcc->getBalance() << endl;
 }
 

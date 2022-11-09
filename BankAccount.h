@@ -17,7 +17,7 @@ public:
 
     BankAccount():balance(0){};
     BankAccount(double startBalance):balance(startBalance){};
-    void setOwner(Client& client);
+    void setOwner(Client* client);
     Client& getOwner();
     string getID();
     void setID(string ID);

@@ -1,9 +1,11 @@
-#ifndef BANKAPP_H_
-#define BANKAPP_H_
+#ifndef BANKAPPLICATION_H_
+#define BANKAPPLICATION_H_
 
 #include<bits/stdc++.h>
 #include "BankAccount.h"
 #include "Client.h"
+
+using namespace std;
 
 class BankApplication
 {
@@ -15,8 +17,8 @@ public:
     BankApplication();
     bool addClient();
     void listAccounts();
-    void withdraw(double money);
-    void deposit(double money);
+    void withdraw();
+    void deposit();
 };
 
 #endif
