@@ -15,14 +15,14 @@ private:
     BankAccount* bankAcc;
 public:
     Client() = default;
+    BankAccount& getBankAccount();
+    void setBankAccount(BankAccount& account);
     void setName(string name);
     void setAddress(string address);
     void setPhoneNumber(int number);
-    void setBankAccount(BankAccount* bankAcc);
     string getName();
     string getAddress();
     int getPhoneNumber();
-    BankAccount& getBankAccount();
     void DisplayInfo();
 };
 

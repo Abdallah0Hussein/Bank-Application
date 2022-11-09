@@ -8,9 +8,9 @@ BankAccount& Client::getBankAccount()
   return *bankAcc;
 }
 
-void Client::setBankAccount(BankAccount* account)
+void Client::setBankAccount(BankAccount& account)
 {
-  bankAcc = account;
+  bankAcc = &account;
 }
 
 void Client::setName(string name)
@@ -45,6 +45,6 @@ int Client::getPhoneNumber()
 
 void Client::DisplayInfo()
 {
-  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber;// << "\nAccount ID: " << bankAcc->getID() << "(" << bankAcc->getAccType() << ")\nBalance: " << bankAcc->getBalance() << endl;
+  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber << "\nAccount ID: " << bankAcc->getID() << "(" << bankAcc->getAccType() << ")\nBalance: " << bankAcc->getBalance() << endl;
 }
 

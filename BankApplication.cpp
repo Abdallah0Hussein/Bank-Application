@@ -116,8 +116,8 @@ bool BankApplication::addClient()
 
     BankAccount account(balance);
     account.setID(to_string(ID++));
-    client.setBankAccount(&account);
-    account.setOwner(&client);
+    client.setBankAccount(account);
+    account.setOwner(client);
     accounts.push_back(&account);
     cout << "An account was created with ID " << account.getID() << " and Starting Balance "<< account.getBalance() << " L.E." << endl; 
     return 1;
@@ -133,8 +133,8 @@ bool BankApplication::addClient()
 
     SavingBankAcc account(balance);
     account.setID(to_string(ID++));
-    client.setBankAccount(&account);
-    account.setOwner(&client);
+    client.setBankAccount(account);
+    account.setOwner(client);
     accounts.push_back(&account);
     cout << "An account was created with ID " << account.getID() << " and Starting Balance "<< account.getBalance() << " L.E." << endl; 
     return 1;

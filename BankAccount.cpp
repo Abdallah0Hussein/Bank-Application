@@ -54,9 +54,9 @@ string BankAccount::getAccType()
   return this->accType;
 }
 
-void BankAccount::setOwner(Client* client)
+void BankAccount::setOwner(Client& client)
 {
-  owner = client;
+  owner = &client;
 }
 
 Client& BankAccount::getOwner()
@@ -75,7 +75,7 @@ SavingBankAcc::SavingBankAcc(double startBalance)
 
 int SavingBankAcc::withdraw(double amount)
 {
-  double currentBalance = move(getBalance());
+  double currentBalance = getBalance();
   // withdrawable balance = current balance - minimum balance;
   double withdrawable = currentBalance - minBalance; 
    
