@@ -23,7 +23,7 @@ public:
     void setID(string ID);
     double getBalance();
     void setBalance(double money);
-    string getAccType();
+    virtual string getAccType();
     void DisplayInfo();
     virtual int withdraw(double amount);
     virtual int deposit(double amount);
@@ -36,7 +36,7 @@ private:
     string accType = "Saving";
 public:
     SavingBankAcc(double startBalance);
-    string getType(){return "Saving";};
+    string getAccType(){return accType;};
     int withdraw(double amount);
     int deposit(double amount);
 };

@@ -5,7 +5,7 @@ void BankAccount::DisplayInfo()
   cout << "Account ID: " << accID << "\nAccount Type: " << accType << "\nBalance: " << balance << endl;
 }
 
-virtual int BankAccount::withdraw(double amount)
+int BankAccount::withdraw(double amount)
 {
   if (amount <= balance)
   {
@@ -20,7 +20,7 @@ virtual int BankAccount::withdraw(double amount)
   }
 }
 
-virtual int BankAccount::deposit(double amount)
+int BankAccount::deposit(double amount)
 {
   balance += amount;
   cout << "Thank you.\nAccount ID: " << accID << "\nNew Balance: " << balance << endl;
@@ -33,8 +33,10 @@ string BankAccount::getID()
 }
 
 void BankAccount::setID(string ID)
-{
-  accID = ID;
+{  
+  stringstream finalForm;
+  finalForm << "FCAI-" << setfill('0') << setw(3) << ID;
+  accID = finalForm.str();
 }
 
 double BankAccount::getBalance()
@@ -47,9 +49,9 @@ void BankAccount::setBalance(double money)
   balance = money;
 }
 
-string BankAccount::getAccType()
+virtual string BankAccount::getAccType()
 {
-  return accType;
+  return this->accType;
 }
 
 void BankAccount::setOwner(Client& client)

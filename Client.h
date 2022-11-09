@@ -1,7 +1,8 @@
 #ifndef CLIENT_H_
 #define CLIENT_H_
 
-#include"BankAccount.h"
+#include<bits/stdc++.h>
+#include "BankAccount.h"
 
 class Client
 {
@@ -11,7 +12,7 @@ private:
     int phoneNumber;
     BankAccount* bankAccount;
 public:
-    Client();
+    Client() = default;
     void setName(string name);
     void setAddress(string address);
     void setPhoneNumber(int phoneNumber);
@@ -22,11 +23,6 @@ public:
     BankAccount& getBankAccount();
     void DisplayInfo();
 };
-
-BankAccount& Client::getBankAccount()
-{
-    return *bankAccount;
-}
 
 
 
