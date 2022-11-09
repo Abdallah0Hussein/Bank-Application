@@ -14,12 +14,15 @@ private:
     double balance;
     Client* owner;
 public:
+
     BankAccount():balance(0){};
     BankAccount(double startBalance):balance(startBalance){};
+    void setOwner(Client& client);
+    Client& getOwner();
     string getID();
-    string setID(string ID);
+    void setID(string ID);
     double getBalance();
-    double setBalance(double money);
+    void setBalance(double money);
     string getAccType();
     void DisplayInfo();
     virtual int withdraw(double amount);

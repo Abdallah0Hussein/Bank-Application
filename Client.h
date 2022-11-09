@@ -12,10 +12,22 @@ private:
     BankAccount* bankAccount;
 public:
     Client();
+    void setName(string name);
+    void setAddress(string address);
+    void setPhoneNumber(int phoneNumber);
+    void setBankAccount(BankAccount& bankAccount);
+    string getName();
+    string getAddress();
+    int getPhoneNumber();
+    BankAccount& getBankAccount();
     void DisplayInfo();
 };
 
-Client::Client() {}
+BankAccount& Client::getBankAccount()
+{
+    return *bankAccount;
+}
+
 
 
 #endif

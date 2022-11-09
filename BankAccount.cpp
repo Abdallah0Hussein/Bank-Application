@@ -32,7 +32,7 @@ string BankAccount::getID()
   return accID;
 }
 
-string BankAccount::setID(string ID)
+void BankAccount::setID(string ID)
 {
   accID = ID;
 }
@@ -42,7 +42,7 @@ double BankAccount::getBalance()
   return balance;
 }
 
-double BankAccount::setBalance(double money)
+void BankAccount::setBalance(double money)
 {
   balance = money;
 }
@@ -50,6 +50,16 @@ double BankAccount::setBalance(double money)
 string BankAccount::getAccType()
 {
   return accType;
+}
+
+void BankAccount::setOwner(Client& client)
+{
+  owner = &client;
+}
+
+Client& BankAccount::getOwner()
+{
+  return *owner;
 }
 // ___________________________________________
 
