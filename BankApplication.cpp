@@ -83,11 +83,10 @@ bool BankApplication::addClient()
   Client client;
   string name;
   string address;
-  int phone;
+  string phone;
   int type;
   double balance;
 
-  cin.ignore();
   cout << "Please Enter Client Name: ";
   getline(cin, name);
   cin.ignore();
@@ -99,14 +98,21 @@ bool BankApplication::addClient()
   client.setAddress(address);
 
   cout << "Please Enter Client Phone: ";
-  cin >> phone;
+  getline(cin, phone);
   cin.ignore();
   client.setPhoneNumber(phone);
 
-  cout << "What Type of Account Do You Like? (1) Basic (2) Saving.\nType 1 or 2: ";
+  
+  do
+  {
+    cout << "What Type of Account Do You Like? (1) Basic (2) Saving.\nType 1 or 2: ";
+    cin >> type;
+  }
+  while (type != 1 || type != 2);
 
   if (type == 1)
   {
+    cout << "entered";
     do
     {
       cout << "Please Enter the Starting Balance: ";

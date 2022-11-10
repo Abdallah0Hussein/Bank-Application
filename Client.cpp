@@ -33,12 +33,12 @@ string Client::getAddress()
   return address;
 }
 
-void Client::setPhoneNumber(int number)
+void Client::setPhoneNumber(string number)
 {
   this->phoneNumber = number;
 }
 
-int Client::getPhoneNumber()
+string Client::getPhoneNumber()
 {
   return phoneNumber;
 }

@@ -1,10 +1,11 @@
 #ifndef BANKACCOUNT_H_
 #define BANKACCOUNT_H_
 
-#include<bits/stdc++.h>
 #include "Client.h"
+#include<bits/stdc++.h>
 
 using namespace std;
+class Client;
 
 class BankAccount
 {    
@@ -12,7 +13,7 @@ private:
     string accType = "Basic";
     string accID;
     double balance;
-    Client* owner = nullptr;
+    Client* owner;
 public:
 
     BankAccount():balance(0){};

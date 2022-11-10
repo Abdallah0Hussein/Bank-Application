@@ -6,12 +6,14 @@
 
 using namespace std;
 
+class BankAccount;
+
 class Client
 {
 private:
     string name;
     string address;
-    int phoneNumber;
+    string phoneNumber;
     BankAccount* bankAcc;
 public:
     Client() = default;
@@ -19,10 +21,10 @@ public:
     void setBankAccount(BankAccount& account);
     void setName(string name);
     void setAddress(string address);
-    void setPhoneNumber(int number);
+    void setPhoneNumber(string number);
     string getName();
     string getAddress();
-    int getPhoneNumber();
+    string getPhoneNumber();
     void DisplayInfo();
 };
 
