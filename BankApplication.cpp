@@ -146,11 +146,11 @@ bool BankApplication::addClient()
   {
     do
     {
-      cout << "Please Enter the minimum Balance (cannot withdraw it as long as the account is open) to open your Saving Account (must be above or equal 100 L.E.): ";
+      cout << "Please Enter the minimum Balance (cannot withdraw it as long as the account is open) to open your Saving Account (must be above or equal 1000 L.E.): ";
       cin >> minBalance;
       cin.ignore();
     } 
-    while(minBalance < 100);
+    while(minBalance < 1000);
 
     do
     {
