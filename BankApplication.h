@@ -12,7 +12,6 @@ class BankApplication
 private:
     //vector of pointers to apply polymorphism on bankaccount and savingbankacc using virtual methods
     vector<BankAccount*> accounts;
-    //vector<SavingBankAcc> savingAccounts;
 public:
     BankApplication();
     bool addClient();

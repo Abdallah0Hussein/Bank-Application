@@ -1,30 +1,41 @@
 #include "BankApplication.h"
 
+static int nAccounts = 0;
+
 BankApplication::BankApplication()
 {
   int choice;
-  do
+  accounts.reserve(10);
+  while(true)
   {
-    cout << "Welcome to FCAI Banking Application\n1. Create a New Account\n2. List Clients and Accounts\n3. Withdraw Money\n4. Deposit Money\nPlease Enter Choice: ";
-    cin >> choice;
-  }
-  while(choice < 1 || choice > 4);
+    do
+    {
+      cout << "Welcome to FCAI Banking Application\n1. Create a New Account\n2. List Clients and Accounts\n3. Withdraw Money\n4. Deposit Money\n5. Exit\nPlease Enter Choice: ";
+      cin >> choice;
+      cin.ignore();
+    }
+    while(choice < 1 || choice > 5);
 
-  if(choice == 1)
-  {
-    addClient();
-  }
-  else if(choice == 2)
-  {
-    listAccounts();
-  }
-  else if(choice == 3)
-  {
-    this->withdraw();
-  }
-  else if(choice == 4)
-  {
-    this->deposit();
+    if(choice == 1)
+    {
+      addClient();
+    }
+    else if(choice == 2)
+    {
+      listAccounts();
+    }
+    else if(choice == 3)
+    {
+      this->withdraw();
+    }
+    else if(choice == 4)
+    {
+      this->deposit();
+    }
+    else if (choice == 5)
+    {
+      break;
+    }
   }
 }
 
@@ -33,9 +44,8 @@ void BankApplication::withdraw()
     string ID;
     cout << "Please Enter Account ID (e.g.,FCAI-015): ";
     getline(cin, ID);
-    cin.ignore();
     // Normal for loop to get the actual account not a copy from it 
-    for(int i  = 0; i < accounts.size(); i++)
+    for(int i  = 0; i < nAccounts; i++)
     {
         if (accounts[i]->getID() == ID)
         {
@@ -43,8 +53,9 @@ void BankApplication::withdraw()
             accounts[i]->DisplayInfo();
             do
             {
-                cout << "Please Enter The Amount to Withdraw: ";
-                cin >> amount;
+              cout << "Please Enter The Amount to Withdraw: ";
+              cin >> amount;
+              cin.ignore();
             }
             while(accounts[i]->withdraw(amount) == 1);
             break;
@@ -57,9 +68,8 @@ void BankApplication::deposit()
     string ID;
     cout << "Please Enter Account ID (e.g.,FCAI-015): ";
     getline(cin, ID);
-    cin.ignore();
     // Normal for loop to get the actual account not a copy from it 
-    for(int i  = 0; i < accounts.size(); i++)
+    for(int i  = 0; i < nAccounts; i++)
     {
         if (accounts[i]->getID() == ID)
         {
@@ -67,8 +77,9 @@ void BankApplication::deposit()
             accounts[i]->DisplayInfo();
             do
             {
-            cout << "Please Enter The Amount to deposit: ";
-            cin >> amount;
+              cout << "Please Enter The Amount to deposit: ";
+              cin >> amount;
+              cin.ignore();
             }
             while(accounts[i]->deposit(amount) == 1);
             break;
@@ -78,70 +89,75 @@ void BankApplication::deposit()
 
 bool BankApplication::addClient()
 {
-  static int ID = 1;
+  static int ID = 0;
+  static int index = 0;
 
   Client client;
   string name;
   string address;
   string phone;
-  int type;
+  string type;
   double balance;
 
   cout << "Please Enter Client Name: ";
   getline(cin, name);
-  cin.ignore();
   client.setName(name);
 
   cout << "Please Enter Client Address: ";
   getline(cin, address);
-  cin.ignore();
   client.setAddress(address);
 
   cout << "Please Enter Client Phone: ";
   getline(cin, phone);
-  cin.ignore();
   client.setPhoneNumber(phone);
 
   
   do
   {
     cout << "What Type of Account Do You Like? (1) Basic (2) Saving.\nType 1 or 2: ";
-    cin >> type;
+    getline(cin, type);
+    type.erase(remove_if(type.begin(), type.end(), ::isspace), type.end());
   }
-  while (type != 1 || type != 2);
+  while (stoi(type) > 2 || stoi(type) < 1);
 
-  if (type == 1)
+  if (type == "1")
   {
-    cout << "entered";
     do
     {
       cout << "Please Enter the Starting Balance: ";
       cin >> balance;
+      cin.ignore();
     } 
     while(balance < 0);
 
     BankAccount account(balance);
-    account.setID(to_string(ID++));
+    account.setID(to_string(++ID));
     client.setBankAccount(account);
     account.setOwner(client);
-    accounts.push_back(&account);
+    accounts[index++] = new BankAccount(account);
+    nAccounts++;
+
+    (accounts[0]->getOwner()).DisplayInfo();
+
     cout << "An account was created with ID " << account.getID() << " and Starting Balance "<< account.getBalance() << " L.E." << endl; 
     return 1;
   }
-  else if (type == 2)
+  else if (type == "2")
   {
     do
     {
       cout << "Please Enter the Starting Balance (must be above 1000 L.E.): ";
       cin >> balance;
+      cin.ignore();
     } 
     while(balance < 1000);
 
     SavingBankAcc account(balance);
-    account.setID(to_string(ID++));
+    account.setID(to_string(++ID));
     client.setBankAccount(account);
     account.setOwner(client);
-    accounts.push_back(&account);
+    accounts[index++] = new SavingBankAcc(account);
+    ++nAccounts;
     cout << "An account was created with ID " << account.getID() << " and Starting Balance "<< account.getBalance() << " L.E." << endl; 
     return 1;
   }
@@ -150,9 +166,9 @@ bool BankApplication::addClient()
 
 void BankApplication::listAccounts()
 {
-  for (int i = 0; i < accounts.size(); i++)
+  for (int i = 0; i < nAccounts; i++)
   {
     (accounts[i]->getOwner()).DisplayInfo();
-    cout << "-------------------------------------" << endl;
+    cout << "----------------------------------" << endl;
   }
 }

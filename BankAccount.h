@@ -2,10 +2,12 @@
 #define BANKACCOUNT_H_
 
 #include "Client.h"
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
+
+class Client;
 
 using namespace std;
-class Client;
+
 
 class BankAccount
 {    
@@ -15,9 +17,10 @@ private:
     double balance;
     Client* owner;
 public:
-
+    BankAccount(BankAccount& account);  
     BankAccount():balance(0){};
     BankAccount(double startBalance):balance(startBalance){};
+    //~BankAccount();
     void setOwner(Client& client);
     Client& getOwner();
     string getID();
@@ -37,6 +40,8 @@ private:
     string accType = "Saving";
 public:
     SavingBankAcc(double startBalance);
+    SavingBankAcc(SavingBankAcc& account);
+    //~SavingBankAcc();
     string getAccType(){return accType;};
     int withdraw(double amount);
     int deposit(double amount);

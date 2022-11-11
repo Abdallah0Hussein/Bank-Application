@@ -63,6 +63,20 @@ Client& BankAccount::getOwner()
 {
   return *owner;
 }
+
+BankAccount::BankAccount(BankAccount& account): accType("Basic"), accID(account.accID), balance(account.balance)
+{
+  owner = new Client();
+  owner->setName((account.getOwner()).getName());
+  owner->setAddress((account.getOwner()).getAddress());
+  owner->setPhoneNumber((account.getOwner()).getPhoneNumber());
+  owner->setBankAccount(*this);          
+}
+
+// BankAccount::~BankAccount()
+// {
+//   delete owner;
+// }
 // ___________________________________________
 
 SavingBankAcc::SavingBankAcc(double startBalance)
@@ -109,3 +123,22 @@ int SavingBankAcc::deposit(double amount)
   }
   
 }
+
+SavingBankAcc::SavingBankAcc(SavingBankAcc& account) : accType("Saving"), minBalance(1000)
+{
+  // FCAI-501 => 501
+  // Give me the str number from index 5 and give me 3 characters from there.
+  string ID = account.getID().substr(5, 3);
+  this->setBalance(account.getBalance());
+  this->setID(ID);
+  this->setOwner(*new Client());
+  (this->getOwner()).setName((account.getOwner()).getName());
+  (this->getOwner()).setAddress((account.getOwner()).getAddress());
+  (this->getOwner()).setPhoneNumber((account.getOwner()).getPhoneNumber());
+  (this->getOwner()).setBankAccount(*this);          
+} 
+
+// SavingBankAcc::~SavingBankAcc()
+// {
+//   delete (&getOwner());
+// }
