@@ -79,12 +79,19 @@ BankAccount::BankAccount(BankAccount& account): accType("Basic"), accID(account.
 // }
 // ___________________________________________
 
-SavingBankAcc::SavingBankAcc(double startBalance)
+SavingBankAcc::SavingBankAcc(double startBalance, double minBalance)
 {
+  this->minBalance = minBalance;
+
   if(startBalance >= minBalance)
   {
     this->setBalance(startBalance);
   }
+}
+
+double SavingBankAcc::getMinBalance()
+{
+  return this->minBalance;
 }
 
 int SavingBankAcc::withdraw(double amount)
@@ -118,17 +125,18 @@ int SavingBankAcc::deposit(double amount)
   }
   else
   {
-    cout << "Sorry. you can only deposit 100L.E or more each time." << endl;
+    cout << "Sorry. you can only deposit 100 L.E or more each time." << endl;
     return 1;
   }
   
 }
 
-SavingBankAcc::SavingBankAcc(SavingBankAcc& account) : accType("Saving"), minBalance(1000)
+SavingBankAcc::SavingBankAcc(SavingBankAcc& account) : accType("Saving"), minBalance(account.getMinBalance())
 {
   // FCAI-501 => 501
   // Give me the str number from index 5 and give me 3 characters from there.
   string ID = account.getID().substr(5, 3);
+  
   this->setBalance(account.getBalance());
   this->setID(ID);
   this->setOwner(*new Client());

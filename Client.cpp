@@ -45,6 +45,6 @@ string Client::getPhoneNumber()
 
 void Client::DisplayInfo()
 {
-  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber << "\nAccount ID: " << bankAcc->getID() << "(" << bankAcc->getAccType() << ")\nBalance: " << bankAcc->getBalance() << endl;
+  cout << "\nName: " << name << "\nAddress: " << address << " Phone: " << phoneNumber << "\nAccount ID: " << bankAcc->getID() << " (" << bankAcc->getAccType() << ")\nBalance: " << bankAcc->getBalance() << endl;
 }
 

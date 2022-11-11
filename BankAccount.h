@@ -39,10 +39,11 @@ private:
     double minBalance = 1000;
     string accType = "Saving";
 public:
-    SavingBankAcc(double startBalance);
+    SavingBankAcc(double startBalance, double minBalance);
     SavingBankAcc(SavingBankAcc& account);
     //~SavingBankAcc();
     string getAccType(){return accType;};
+    double getMinBalance();
     int withdraw(double amount);
     int deposit(double amount);
 };

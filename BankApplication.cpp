@@ -5,7 +5,7 @@ static int nAccounts = 0;
 BankApplication::BankApplication()
 {
   int choice;
-  accounts.reserve(10);
+  accounts.reserve(999);
   while(true)
   {
     do
@@ -98,6 +98,7 @@ bool BankApplication::addClient()
   string phone;
   string type;
   double balance;
+  double minBalance;
 
   cout << "Please Enter Client Name: ";
   getline(cin, name);
@@ -111,7 +112,6 @@ bool BankApplication::addClient()
   getline(cin, phone);
   client.setPhoneNumber(phone);
 
-  
   do
   {
     cout << "What Type of Account Do You Like? (1) Basic (2) Saving.\nType 1 or 2: ";
@@ -146,13 +146,21 @@ bool BankApplication::addClient()
   {
     do
     {
-      cout << "Please Enter the Starting Balance (must be above 1000 L.E.): ";
+      cout << "Please Enter the minimum Balance (cannot withdraw it as long as the account is open) to open your Saving Account (must be above or equal 100 L.E.): ";
+      cin >> minBalance;
+      cin.ignore();
+    } 
+    while(minBalance < 100);
+
+    do
+    {
+      cout << "Please Enter the Starting Balance (must be above or equal " << minBalance << " L.E.): ";
       cin >> balance;
       cin.ignore();
     } 
-    while(balance < 1000);
+    while(balance < minBalance);
 
-    SavingBankAcc account(balance);
+    SavingBankAcc account(balance, minBalance);
     account.setID(to_string(++ID));
     client.setBankAccount(account);
     account.setOwner(client);
