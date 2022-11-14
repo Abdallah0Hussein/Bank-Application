@@ -73,10 +73,6 @@ BankAccount::BankAccount(BankAccount& account): accType("Basic"), accID(account.
   owner->setBankAccount(*this);          
 }
 
-// BankAccount::~BankAccount()
-// {
-//   delete owner;
-// }
 // ___________________________________________
 
 SavingBankAcc::SavingBankAcc(double startBalance, double minBalance)
@@ -146,7 +142,3 @@ SavingBankAcc::SavingBankAcc(SavingBankAcc& account) : accType("Saving"), minBal
   (this->getOwner()).setBankAccount(*this);          
 } 
 
-// SavingBankAcc::~SavingBankAcc()
-// {
-//   delete (&getOwner());
-// }

@@ -18,6 +18,7 @@ public:
     void listAccounts();
     void withdraw();
     void deposit();
+    ~BankApplication();
 };
 
 #endif

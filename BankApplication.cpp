@@ -180,3 +180,11 @@ void BankApplication::listAccounts()
     cout << "----------------------------------" << endl;
   }
 }
+
+BankApplication::~BankApplication()
+{
+  for (int i = 0; i < nAccounts; i++)
+  {
+    delete &(accounts[i]->getOwner());
+  }
+}
