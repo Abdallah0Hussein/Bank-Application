@@ -143,8 +143,6 @@ bool BankApplication::addClient()
     accounts[index++] = new BankAccount(account);
     nAccounts++;
 
-    (accounts[0]->getOwner()).DisplayInfo();
-
     cout << "An account was created with ID " << account.getID() << " and Starting Balance "<< account.getBalance() << " L.E." << endl; 
     return 1;
   }
@@ -192,6 +190,5 @@ BankApplication::~BankApplication()
   for (int i = 0; i < nAccounts; i++)
   {
     delete &(accounts[i]->getOwner());
-    delete accounts[i];
   }
 }
