@@ -1,3 +1,9 @@
+// FCAI – OOP – 2022 - Assignment 2
+// Program: Bank-Application 
+// Author: Abdallah Hussein Ibrahim Hussein - Ahmad Reda Bayoumi
+// IDs: 20210235 - 20210019
+// Date: November 2022
+// ...........................................................................................
 #include "BankApplication.h"
 
 static int nAccounts = 0;
@@ -186,5 +192,6 @@ BankApplication::~BankApplication()
   for (int i = 0; i < nAccounts; i++)
   {
     delete &(accounts[i]->getOwner());
+    delete accounts[i];
   }
 }
