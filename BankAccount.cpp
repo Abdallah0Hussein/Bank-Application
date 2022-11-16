@@ -8,7 +8,7 @@
 
 void BankAccount::DisplayInfo()
 {
-  cout << "Account ID: " << accID << "\nAccount Type: " << accType << "\nBalance: " << balance << endl;
+  cout << "Account ID: " << accID << "\nAccount Type: " << this->getAccType() << "\nBalance: " << balance << endl;
 }
 
 int BankAccount::withdraw(double amount)

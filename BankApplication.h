@@ -7,7 +7,7 @@
 #ifndef BANKAPPLICATION_H_
 #define BANKAPPLICATION_H_
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #include "BankAccount.h"
 #include "Client.h"
 
